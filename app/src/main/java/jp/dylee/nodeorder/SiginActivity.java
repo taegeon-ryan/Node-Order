@@ -1,11 +1,8 @@
 package jp.dylee.nodeorder;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,9 +14,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import static android.content.ContentValues.TAG;
 
 public class SiginActivity extends Activity{
 
@@ -30,12 +24,13 @@ public class SiginActivity extends Activity{
     String em;
     String pw;
     //define firebase object
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_signin);
+
         sig_email = (EditText)findViewById(R.id.sig_email);
         sig_pw = (EditText)findViewById(R.id.sig_pw);
         sig_sig = (Button)findViewById(R.id.sig_signinbtn);
@@ -58,7 +53,6 @@ public class SiginActivity extends Activity{
                                     finish();
                                 } else {
                                     Toast.makeText(SiginActivity.this, "등록 에러", Toast.LENGTH_SHORT).show();
-                                    return;
                                 }
 
 
