@@ -21,8 +21,8 @@ public class SiginActivity extends Activity{
     EditText sig_email;
     EditText sig_pw;
     Button sig_sig;
-    String em;
-    String pw;
+    String em="";
+    String pw="";
     //define firebase object
     FirebaseAuth mAuth;
 
@@ -42,22 +42,29 @@ public class SiginActivity extends Activity{
             public void onClick(View view) {
                 em = sig_email.getText().toString().trim();
                 pw = sig_pw.getText().toString().trim();
-                mAuth.createUserWithEmailAndPassword(em, pw)
-                        .addOnCompleteListener(SiginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(SiginActivity.this, "등록 성공", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(SiginActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(SiginActivity.this, "등록 에러", Toast.LENGTH_SHORT).show();
+                if(em.length()!=0 && pw.length()!=0)
+                {
+                    mAuth.createUserWithEmailAndPassword(em, pw)
+                            .addOnCompleteListener(SiginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SiginActivity.this, "등록 성공", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SiginActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(SiginActivity.this, "등록 에러. 비번은 최소 6자리 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
+                                    }
+
+
                                 }
+                            });
+                }else{
+                    Toast.makeText(SiginActivity.this, "ID/PW를 입력하세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-
-                            }
-                        });
             }
         });
     }

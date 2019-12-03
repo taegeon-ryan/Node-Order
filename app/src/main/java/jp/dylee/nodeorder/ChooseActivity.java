@@ -1,11 +1,10 @@
 package jp.dylee.nodeorder;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Handler;
 import android.os.Bundle;
 
-public class ChooseActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ChooseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
