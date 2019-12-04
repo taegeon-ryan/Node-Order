@@ -23,6 +23,8 @@
         android:textSize="9pt"
         android:text="나는 지금..!"></TextView>
         <Button
+            android:padding="20dp"
+            android:id="@+id/student"
             android:background="#FFB6AF"
             android:layout_gravity="center"
             android:text="학생입니다"
@@ -38,6 +40,8 @@
             android:textSize="9pt"
             android:text="아니...?"></TextView>
         <Button
+            android:padding="20dp"
+            android:id="@+id/teacher"
             android:background="#FFB6AF"
             android:layout_gravity="center"
             android:text="야간지도\n쓰앵님인데"
