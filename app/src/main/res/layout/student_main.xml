@@ -50,7 +50,7 @@
         android:layout_margin="20dp"
         android:orientation="vertical"
         android:elevation="10dp"
-        android:background="@drawable/xml_border"
+        android:background="@drawable/main_mawari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <TextView
@@ -61,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></TextView>
     <TextView
+        android:id="@+id/thistime"
         android:textColor="#353535"
         android:textSize="12pt"
         android:layout_marginLeft="20dp"
@@ -73,7 +74,7 @@
         android:layout_margin="20dp"
         android:orientation="vertical"
         android:elevation="10dp"
-        android:background="@drawable/xml_border"
+        android:background="@drawable/main_mawari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -84,6 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
         <TextView
+            android:id="@+id/location"
             android:textColor="#353535"
             android:textSize="12pt"
             android:layout_marginLeft="20dp"
@@ -96,22 +98,42 @@
         android:layout_margin="20dp"
         android:orientation="vertical"
         android:elevation="10dp"
-        android:background="@drawable/xml_border"
+        android:background="@drawable/main_mawari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:textColor="#353535"
-            android:textSize="10pt"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="어디로 갈까요"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_weight="1"
+                android:textColor="#353535"
+                android:textSize="10pt"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:text="어디로 갈까요"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/haruzongil"
+                android:padding="10dp"
+                android:text="하루 종일"
+                android:textColor="#23C77B"></Button>
+        </LinearLayout>
         <Spinner
-            android:layout_margin="20dp"
-            android:popupTheme="@android:style/ThemeOverlay.Material.Light"
+            android:background="@drawable/xml_border"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
             android:id="@+id/spin_heya"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="40dp"></Spinner>
     </LinearLayout>
 </LinearLayout>

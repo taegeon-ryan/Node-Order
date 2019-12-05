@@ -17,7 +17,7 @@ public class StudentActivity extends Activity {
         setContentView(R.layout.student_main);
 
         Spinner spinner = (Spinner) findViewById(R.id.spin_heya);
-        spinner.setPrompt("시/도 를 선택하세요.");
+        spinner.setPrompt("어디로 갈까요?");
 
         adspin = ArrayAdapter.createFromResource(this, R.array.heyas,    android.R.layout.simple_spinner_item);
 
