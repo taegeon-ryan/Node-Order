@@ -59,9 +59,7 @@ public class ChooseActivity extends Activity  {
         builder.setPositiveButton("입력",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        String a = edittext.getText().toString();
-                        Toast.makeText(getApplicationContext(),a,Toast.LENGTH_LONG).show();
-
+                        String a = edittext.getText().toString().trim();
                         if(a.equals("dylee")){
                             Intent intent = new Intent(getApplicationContext(), TeacherActivity.class);
                             startActivity(intent);

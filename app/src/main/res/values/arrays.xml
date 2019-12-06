@@ -6,4 +6,10 @@
         <item>기능반</item>
         <item>외출</item>
     </string-array>
+
+    <string-array name="jikans">
+        <item>10교시</item>
+        <item>11교시</item>
+        <item>하루 종일</item>
+    </string-array>
 </resources>

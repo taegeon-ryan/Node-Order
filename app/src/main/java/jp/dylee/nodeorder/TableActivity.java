@@ -1,128 +1,107 @@
 package jp.dylee.nodeorder;
 
 import android.app.Activity;
-import android.os.Bundle;
+import android.content.Intent;
+import android.net.sip.SipSession;
 import android.os.Handler;
+import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
-public class StudentActivity extends Activity {
+public class TableActivity extends Activity {
+    TextView timee,one,two,three,four;
+    String[] names= {"곽은상", "김강훈", "김규리", "김나연", "김재빈", "김지웅", "남승우", "박건도", "박종효", "신엽", "유정화", "유태건", "유희정", "이성범", "이준표", "임다희", "임태건","정지원", "정훈","최다원"};
+    DatabaseReference mPostReference;
+    Button ref;
+    ValueEventListener Listener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            String oneval, twoval, thrval, fouval;
+            String no = dataSnapshot.child("number").getValue().toString();
+            String name = dataSnapshot.child("name").getValue().toString();
+            String site = dataSnapshot.child("site").getValue().toString();
+            String s_return = dataSnapshot.child("s_return").getValue().toString();
+            oneval = one.getText().toString();
+            one.setText(no + "\n" + oneval);
+            twoval = two.getText().toString();
+            two.setText(name + "\n" + twoval);
+            thrval = three.getText().toString();
+            three.setText(site + "\n" + thrval);
+            fouval = four.getText().toString();
+            four.setText(s_return + "\n" + fouval);
+        }
 
-    DatabaseReference mDBReference = null;
-    HashMap<String, Object> childUpdates = null;
-    Map<String, Object> userValue = null;
-    UserInfo userInfo = null;
-    ArrayAdapter<CharSequence>  adspin, jkspin;
-    TextView namae, thistime, location;
-    private DatabaseReference mPostReference;
-    String name;
-    Button go,hzi;
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {}
 
+    };
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // 성범아 사랑해
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.student_main);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        go = (Button)findViewById(R.id.go);
-        name = user.getDisplayName();
-        namae = (TextView)findViewById(R.id.namae);
-        namae.setText(name);
-        location = (TextView)findViewById(R.id.location);
-        mPostReference = FirebaseDatabase.getInstance().getReference() .child("student").child(name).child("site");
-        thistime = (TextView) findViewById(R.id.thistime);
+        setContentView(R.layout.student_table);
+        timee = (TextView)findViewById(R.id.time);
+        one = (TextView)findViewById(R.id.one);
+        two = (TextView)findViewById(R.id.two);
+        three = (TextView)findViewById(R.id.three);
+        four = (TextView)findViewById(R.id.four);
         jikan_mitai();
-        mDBReference = FirebaseDatabase.getInstance().getReference();
-        childUpdates = new HashMap<>();
-        Query select = FirebaseDatabase.getInstance().getReference().child("User_info");
+        ref = (Button)findViewById(R.id.refresh);
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spin_heya);
-        spinner.setPrompt("어디로 갈까요?");
-
-        adspin = ArrayAdapter.createFromResource(this, R.array.heyas,    android.R.layout.simple_spinner_item);
-
-        adspin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adspin);
-
-        final Spinner jkspinner = (Spinner) findViewById(R.id.spin_jikan);
-        spinner.setPrompt("돌아올 시간은?");
-
-        jkspin = ArrayAdapter.createFromResource(this, R.array.jikans,    android.R.layout.simple_spinner_item);
-        jkspinner.setAdapter(jkspin);
-
-        go.setOnClickListener(new View.OnClickListener() {
+        ref.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = spinner.getSelectedItem().toString();
-                childUpdates.put("/student/" + name +"/site", text);
-                mDBReference.updateChildren(childUpdates);
-
-                String  text0 = jkspinner.getSelectedItem().toString();
-                childUpdates.put("/student/" + name + "/s_return", text0);
-                mDBReference.updateChildren(childUpdates);
+                for(int i=0; i<names.length; i++) {
+                    one.setText("");
+                    two.setText("");
+                    three.setText("");
+                    four.setText("");
+                    mPostReference = FirebaseDatabase.getInstance().getReference().child("student").child(names[i]);
+                    mPostReference.addValueEventListener(Listener);
+                }
             }
         });
 
-        ValueEventListener locationListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue().toString();
-                location.setText(value);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
 
-        };
 
-        mPostReference.addValueEventListener(locationListener);
+        for(int i=0; i<names.length; i++){
+            mPostReference = FirebaseDatabase.getInstance().getReference() .child("student").child(names[i]);
+            mPostReference.addValueEventListener(Listener);
+        }
+
 
 
     }
 
     public void jikan_mitai(){
         final Handler handler = new Handler() {
-            SimpleDateFormat simpleDate = new SimpleDateFormat("h시 m분");
             SimpleDateFormat hour = new SimpleDateFormat("HH");
             SimpleDateFormat min = new SimpleDateFormat("mm");
             @Override
             public void handleMessage(Message msg){
-                String time = simpleDate.format(new Date());
                 String h = hour.format(new Date());
                 String m = min.format(new Date());
                 int hh = Integer.parseInt(h);
                 int mm = Integer.parseInt(m);
                 Log.d("tt",  Integer.toString(hh));
                 String timetable = timemethod(hh,mm);
-                thistime.setText(time + "(" + timetable + ")");
+                timee.setText(timetable);
             }
         };
-
         Runnable task = new Runnable() {
             @Override
             public void run() {
@@ -239,9 +218,9 @@ public class StudentActivity extends Activity {
                 if(mm<20)
                     timetable="11교시";
                 else
-                    timetable="하교";
+                    timetable="하교시간";
                 break;
-            default: timetable="하교";
+            default: timetable="하교시간";
         }
 
         return timetable;
