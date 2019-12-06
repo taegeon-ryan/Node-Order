@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="heyas">
-        <item>교f실</item>
         <item>교실</item>
         <item>홈베이스</item>
         <item>기능반</item>
