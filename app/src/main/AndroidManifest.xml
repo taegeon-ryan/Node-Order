@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Black.NoTitleBar">
         <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".SiginActivity"></activity>
         <activity android:name=".ChooseActivity"></activity>
         <activity android:name=".StudentActivity"></activity>
         <activity android:name=".TeacherActivity"></activity>
