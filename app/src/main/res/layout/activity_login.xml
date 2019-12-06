@@ -23,7 +23,7 @@
             android:id="@+id/btnGoogleLogin"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:text="Google 계정으로 로그인"
+            android:text="@string/btn_google_login"
             android:textColor="#333"
             android:drawableLeft="@drawable/drawable_left_image_customize"
             android:paddingLeft="25dp"
@@ -33,7 +33,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
-            android:elevation="6dp"/>
+            android:elevation="4dp"/>
 
     </RelativeLayout>
 

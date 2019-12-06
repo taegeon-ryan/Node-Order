@@ -1,51 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:gravity="center"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:elevation="10dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="150dp"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:orientation="vertical">
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="9pt"
-        android:text="나는 지금..!"></TextView>
-        <Button
-            android:padding="20dp"
-            android:id="@+id/student"
-            android:background="#FFB6AF"
-            android:layout_gravity="center"
-            android:text="학생입니다"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Button>
-        <TextView
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_gravity="center"
+        android:layout_height="250dp"
+        android:background="@drawable/linear_layout_border_shadow"
+        android:clipToPadding="false">
+
+        <ImageView
+            android:id="@+id/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="9pt"
-            android:text="아니...?"></TextView>
-        <Button
-            android:padding="20dp"
-            android:id="@+id/teacher"
-            android:background="#FFB6AF"
-            android:layout_gravity="center"
-            android:text="야간지도\n쓰앵님인데"
+            android:src="@drawable/logo"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp" />
+
+        <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Button>
+            android:layout_height="wrap_content"
+            android:text="@string/chooseActivity_title"
+            android:textSize="40dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="20dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/btnContainer">
+
+        <LinearLayout
+            android:id="@+id/layoutStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:orientation="vertical"
+            android:elevation="8dp"
+            android:hardwareAccelerated="true">
+
+            <ImageButton
+                android:id="@+id/btnStudent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/btn_student"
+                android:background="transparent"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="학생"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#333"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutTeacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/layoutStudent"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnTeacher"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/btn_teacher"
+                android:background="transparent"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="선생님"
+                android:textSize="20sp"
+                android:textColor="#333"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/spinnerContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="학년"
+            android:textSize="18sp"
+            android:textColor="#23c77b"/>
+
+        <Spinner
+            android:id="@+id/spGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/grade"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="반"
+            android:textSize="18sp"
+            android:textColor="#23c77b"/>
+
+        <Spinner
+            android:id="@+id/spClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/classes"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="번호"
+            android:textSize="18sp"
+            android:textColor="#23c77b"/>
+
+        <Spinner
+            android:id="@+id/spNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/number"
+            android:layout_marginLeft="5dp"/>
+
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/nameContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="18sp"
+            android:textColor="#23c77b" />
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="이름 입력"
+            android:textSize="16sp"
+            android:layout_marginLeft="3dp"
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="계속하기"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:background="@drawable/green_rounded"
+        android:textSize="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:elevation="4dp" />
+
+</RelativeLayout>

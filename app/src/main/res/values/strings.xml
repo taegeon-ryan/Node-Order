@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Node Order</string>
+    <string name="btn_google_login">Google 계정으로 로그인</string>
     <string name="success_login">로그인 성공</string>
     <string name="failed_login">로그인 실패</string>
+    <string name="chooseActivity_title">정보 입력</string>
 </resources>
