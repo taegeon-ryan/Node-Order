@@ -1,6 +1,7 @@
 package jp.dylee.nodeorder;
 
 import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,8 +10,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,18 +38,19 @@ import java.util.Map;
 
 public class StudentActivity extends Activity {
 
+    TextView shi, bun;
     DatabaseReference mDBReference = null;
     HashMap<String, Object> childUpdates = null;
-    Map<String, Object> userValue = null;
-    UserInfo userInfo = null;
-    ArrayAdapter<CharSequence>  adspin, jkspin;
+    ArrayAdapter<CharSequence>  adspin;
     TextView namae, thistime, location;
     private DatabaseReference mPostReference;
     String name;
-    Button go,hzi;
-
+    Button go, clock;
+    TimePickerDialog dialog;
+    String hour, min;
+    CheckBox hazong;
     @Override
-    protected void onCreate(Bundle savedInstanceState) { // 성범아 사랑해
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_main);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -59,7 +64,33 @@ public class StudentActivity extends Activity {
         jikan_mitai();
         mDBReference = FirebaseDatabase.getInstance().getReference();
         childUpdates = new HashMap<>();
-        Query select = FirebaseDatabase.getInstance().getReference().child("User_info");
+        shi = (TextView) findViewById(R.id.shi);
+        bun = (TextView) findViewById(R.id.bun);
+        clock = (Button)findViewById(R.id.clock);
+        hazong = (CheckBox)findViewById(R.id.hazong);
+        TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                hour = Integer.toString(hourOfDay);
+                min = Integer.toString(minute);
+                shi.setText(hour);
+                bun.setText(min);
+            }
+        };
+
+        SimpleDateFormat dialogFormat_H = new SimpleDateFormat ( "H");
+        SimpleDateFormat dialogFormat_M = new SimpleDateFormat ( "m");
+        Date time = new Date();
+        int nowtime_H = Integer.parseInt(dialogFormat_H.format(time));
+        int nowtime_M = Integer.parseInt(dialogFormat_M.format(time));
+        dialog = new TimePickerDialog(this, listener, nowtime_H, nowtime_M, true);
+
+        clock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show();
+            }
+        });
 
         final Spinner spinner = (Spinner) findViewById(R.id.spin_heya);
         spinner.setPrompt("어디로 갈까요?");
@@ -69,22 +100,21 @@ public class StudentActivity extends Activity {
         adspin.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adspin);
 
-        final Spinner jkspinner = (Spinner) findViewById(R.id.spin_jikan);
-        spinner.setPrompt("돌아올 시간은?");
-
-        jkspin = ArrayAdapter.createFromResource(this, R.array.jikans,    android.R.layout.simple_spinner_item);
-        jkspinner.setAdapter(jkspin);
-
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String text = spinner.getSelectedItem().toString();
                 childUpdates.put("/student/" + name +"/site", text);
                 mDBReference.updateChildren(childUpdates);
-
-                String  text0 = jkspinner.getSelectedItem().toString();
-                childUpdates.put("/student/" + name + "/s_return", text0);
-                mDBReference.updateChildren(childUpdates);
+                if(hazong.isChecked()){
+                    childUpdates.put("/student/" + name + "/s_return", "하루종일");
+                    mDBReference.updateChildren(childUpdates);
+                }else{
+                    String  text0 = hour + " : " + min;
+                    childUpdates.put("/student/" + name + "/s_return", text0);
+                    mDBReference.updateChildren(childUpdates);
+                }
+                Toast.makeText(getApplicationContext(),"설정되었습니다.",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -101,8 +131,6 @@ public class StudentActivity extends Activity {
         };
 
         mPostReference.addValueEventListener(locationListener);
-
-
     }
 
     public void jikan_mitai(){
