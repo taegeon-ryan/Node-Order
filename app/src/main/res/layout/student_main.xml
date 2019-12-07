@@ -101,29 +101,130 @@
         android:background="@drawable/main_mawari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:paddingTop="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:layout_weight="1"
-                android:textColor="#353535"
-                android:textSize="10pt"
-                android:layout_marginTop="5dp"
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
                 android:text="어디로 갈까요"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-
+                android:textColor="#353535"
+                android:textSize="8pt"></TextView>
+            <Spinner
+                android:background="@drawable/xml_border"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/spin_heya"
+                android:layout_width="150dp"
+                android:layout_height="30dp"></Spinner>
         </LinearLayout>
-        <Spinner
-            android:background="@drawable/xml_border"
-            android:paddingLeft="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/spin_heya"
-            android:layout_width="200dp"
-            android:layout_height="40dp"></Spinner>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="돌아올 시간은?"
+                    android:textColor="#353535"
+                    android:textSize="8pt"></TextView>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/shi"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+                    android:textSize="8pt"
+                    android:background="@drawable/xml_border"
+                    android:padding="5dp"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"></TextView>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 시 "
+                    android:textColor="#353535"
+                    android:textSize="8pt"></TextView>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/bun"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000"
+                    android:textSize="8pt"
+                    android:background="@drawable/xml_border"
+                    android:padding="5dp"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"></TextView>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 분"
+                    android:textColor="#353535"
+                    android:textSize="8pt"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    android:id="@+id/clock"
+                    android:layout_marginRight="20dp"
+                    android:padding="5dp"
+                    android:textSize="5pt"
+                    android:text="시간설정"
+                    android:background="@drawable/rounded"
+                    android:elevation="5dp"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"></Button>
+                <CheckBox
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#23C77B"
+                    android:id="@+id/hazong"
+                    android:layout_marginRight="20dp"
+                    android:padding="5dp"
+                    android:textSize="5pt"
+                    android:text="하루종일"
+                    android:gravity="center"
+                    android:button="@null"
+                    android:background="@drawable/mycheck"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"></CheckBox>
+            </LinearLayout>
+        </LinearLayout>
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/go"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:text="적용"
+            android:textColor="#333"
+            android:background="@drawable/rounded"
+            android:textSize="18dp"
+            android:textFontWeight="500"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:elevation="6dp"/>
     </LinearLayout>
 </LinearLayout>

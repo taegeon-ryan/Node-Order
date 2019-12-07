@@ -13,6 +13,7 @@
         <activity android:name=".ChooseActivity"></activity>
         <activity android:name=".StudentActivity"></activity>
         <activity android:name=".TeacherActivity"></activity>
+        <activity android:name=".TableActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

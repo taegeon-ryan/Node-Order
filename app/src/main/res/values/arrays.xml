@@ -1,42 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="heyas">
-        <item>교실</item>
         <item>홈베이스</item>
         <item>기능반</item>
         <item>외출</item>
     </string-array>
-    <integer-array name="grade">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </integer-array>
-    <integer-array name="classes">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </integer-array>
-    <integer-array name="number">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-    </integer-array>
+
+    <string-array name="jikans">
+        <item>10교시</item>
+        <item>11교시</item>
+        <item>하루 종일</item>
+    </string-array>
 </resources>
