@@ -28,18 +28,30 @@ import java.util.HashMap;
 
 
 public class ChooseActivity extends Activity  {
+    String temp = "";
     HashMap<String, Object> childUpdates = null;
     String Text, genzai_namae;
     Button student, teacher;
     AlertDialog.Builder alert;
     DatabaseReference returnRef = null;
     DatabaseReference allRef = null;
-    String[] names= {"곽은상", "김강훈", "김규리", "김나연", "김재빈", "김지웅", "남승우", "박건도", "박종효", "신엽", "유정화", "유태건", "유희정", "이성범", "이준표", "임다희", "임태건","정지원", "정훈","최다원"};
+    String[] names = {"곽은상", "김강훈", "김규리", "김나연", "김재빈", "김지웅", "남승우", "박건도", "박종효", "신엽", "유정화", "유태건", "유희정", "이성범", "이준표", "임다희", "임태건","정지원", "정훈","최다원"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose);
+
+        for(int i = 0; i < names.length-1; i++){
+            for(int j = i; j < names.length; j++){
+                if(names[i].compareTo(names[j]) > 0){
+                    temp = names[i];
+                    names[i] = names[j];
+                    names[j] = temp;
+                }
+            }
+        }
+
         alert = new AlertDialog.Builder(this);
         childUpdates = new HashMap<>();
         student = (Button)findViewById(R.id.student);
@@ -73,49 +85,55 @@ public class ChooseActivity extends Activity  {
         Runnable task = new Runnable() {
             @Override
             public void run() {
-
                 while(true){
                     try{
-                        for(int i = 0; i < names.length; i++)
+                        for(int i = 0; i < names.length ; i++)
                         {
                             ValueEventListener listener = new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    Text = dataSnapshot.getValue().toString();
-                                    Log.w("이거다!", Text);
-                                    if(!Text.equals("하루종일") && !Text.equals("")){
+                                    Text = dataSnapshot.child("s_return").getValue().toString();
+                                    if(Text.equals("하루종일")){ }
+                                    else if(Text.length() <= 2){ }
+                                    else{
                                         SimpleDateFormat dialogFormat_H = new SimpleDateFormat ( "H");
                                         SimpleDateFormat dialogFormat_M = new SimpleDateFormat ( "m");
                                         Date time = new Date();
                                         int nowtime_H = Integer.parseInt(dialogFormat_H.format(time));
                                         int nowtime_M = Integer.parseInt(dialogFormat_M.format(time));
+
                                         String cnth = Text.split(":")[0].trim();
                                         String cntm = Text.split(":")[1].trim();
+
                                         int hhh = Integer.parseInt(cnth);
                                         int mmm = Integer.parseInt(cntm);
+
                                         if(nowtime_H>hhh){
-                                            childUpdates.put("/student/" + genzai_namae + "/s_return", "");
+                                            childUpdates.put("/student/" + dataSnapshot.child("name").getValue().toString() + "/s_return", "");
                                             allRef.updateChildren(childUpdates);
-                                            childUpdates.put("/student/" + genzai_namae + "/site", "교실");
+                                            childUpdates.put("/student/" + dataSnapshot.child("name").getValue().toString() + "/site", "교실");
                                             allRef.updateChildren(childUpdates);
                                         }else if(nowtime_H == hhh){
                                             if(nowtime_M>mmm){
-                                                childUpdates.put("/student/" + genzai_namae + "/s_return", "");
-                                                returnRef.updateChildren(childUpdates);
-                                                childUpdates.put("/student/" + genzai_namae + "/site", "교실");
-                                                returnRef.updateChildren(childUpdates);
+                                                childUpdates.put("/student/" + dataSnapshot.child("name").getValue().toString() + "/s_return", "");
+                                                allRef.updateChildren(childUpdates);
+                                                childUpdates.put("/student/" + dataSnapshot.child("name").getValue().toString() + "/site", "교실");
+                                                allRef.updateChildren(childUpdates);
                                             }
                                         }
+
+                                        Log.w("시", cnth);
+                                        Log.w("분", cntm);
+                                        Log.w("이름", dataSnapshot.child("name").getValue().toString());
+
                                     }
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {}
                             };
                             genzai_namae = names[i];
-                            returnRef = FirebaseDatabase.getInstance().getReference().child("student").child(genzai_namae).child("s_return");
+                            returnRef = FirebaseDatabase.getInstance().getReference().child("student").child(genzai_namae);
                             returnRef.addValueEventListener(listener);
-                            Log.w("뭐 시발", "돌았어");
-
                         }
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {}
@@ -124,33 +142,6 @@ public class ChooseActivity extends Activity  {
         };
         Thread thread = new Thread(task);
         thread.start();
-
-            /*private void deletework(String Text) {
-                if(!Text.equals("하루종일") && !Text.equals("")){
-                    SimpleDateFormat dialogFormat_H = new SimpleDateFormat ( "H");
-                    SimpleDateFormat dialogFormat_M = new SimpleDateFormat ( "m");
-                    Date time = new Date();
-                    int nowtime_H = Integer.parseInt(dialogFormat_H.format(time));
-                    int nowtime_M = Integer.parseInt(dialogFormat_M.format(time));
-                    String cnth = Text.split(":")[0].trim();
-                    String cntm = Text.split(":")[1].trim();
-                    int hhh = Integer.parseInt(cnth);
-                    int mmm = Integer.parseInt(cntm);
-                    if(nowtime_H>hhh){
-                        childUpdates.put("/student/" + genzai_namae + "/s_return", "");
-                        allRef.updateChildren(childUpdates);
-                        childUpdates.put("/student/" + genzai_namae + "/site", "교실");
-                        allRef.updateChildren(childUpdates);
-                    }else if(nowtime_H == hhh){
-                        if(nowtime_M>mmm){
-                            childUpdates.put("/student/" + genzai_namae + "/s_return", "");
-                            returnRef.updateChildren(childUpdates);
-                            childUpdates.put("/student/" + genzai_namae + "/site", "교실");
-                            returnRef.updateChildren(childUpdates);
-                        }
-                    }
-                }
-            }*/
         }
 
 
