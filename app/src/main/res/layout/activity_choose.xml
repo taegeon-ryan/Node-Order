@@ -44,15 +44,14 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="50dp"
             android:orientation="vertical"
-            android:elevation="8dp"
-            android:hardwareAccelerated="true">
+            android:elevation="8dp">
 
             <ImageButton
                 android:id="@+id/btnStudent"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/btn_student"
-                android:background="transparent"
+                android:background="@android:color/transparent"
                 android:scaleType="centerCrop"/>
 
             <TextView
@@ -79,7 +78,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/btn_teacher"
-                android:background="transparent"
+                android:background="@android:color/transparent"
                 android:scaleType="centerCrop" />
 
             <TextView

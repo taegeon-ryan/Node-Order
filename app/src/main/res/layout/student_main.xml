@@ -3,49 +3,56 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="#FFFFFF"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:orientation="vertical">
+
         <TextView
-            android:layout_gravity="right"
-            android:textSize="13pt"
-            android:textColor="#23C77B"
-            android:text="[대충 로고]"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="[대충 로고]"
+            android:textColor="#23C77B"
+            android:textSize="13pt" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/namae"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:textSize="16pt"
-                android:textColor="#23C77B"
-                android:textStyle="bold"
-                android:text="[대충 이름]"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:text="[대충 이름]"
+                android:textColor="#23C77B"
+                android:textSize="16pt"
+                android:textStyle="bold" />
             <TextView
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:textSize="16pt"
                 android:textColor="#23C77B"
                 android:textStyle="bold"
                 android:text="님,"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
+
         <TextView
-            android:layout_marginLeft="15dp"
-            android:textSize="16pt"
-            android:textColor="#23C77B"
-            android:textStyle="bold"
-            android:text="반갑습니다."
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="반갑습니다."
+            android:textColor="#23C77B"
+            android:textSize="16pt"
+            android:textStyle="bold" />
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_margin="20dp"
         android:orientation="vertical"
@@ -53,47 +60,55 @@
         android:background="@drawable/main_mawari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
-        android:textColor="#353535"
-        android:textSize="10pt"
-        android:layout_margin="20dp"
-        android:text="현재 시각"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></TextView>
-    <TextView
-        android:id="@+id/thistime"
-        android:textColor="#353535"
-        android:textSize="12pt"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="20dp"
-        android:text="[대충 시각]"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></TextView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="20dp"
-        android:orientation="vertical"
-        android:elevation="10dp"
-        android:background="@drawable/main_mawari"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
         <TextView
-            android:textColor="#353535"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            android:text="현재 시각"
+            android:textColor="#333333"
+            android:textSize="10pt" />
+        <TextView
+            android:id="@+id/thistime"
+            android:textColor="#333333"
+            android:textSize="12pt"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="[대충 시각]"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:elevation="10dp"
+        android:background="@drawable/main_mawari"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="#333333"
             android:textSize="10pt"
             android:layout_margin="20dp"
+            android:textStyle="bold"
             android:text="현재 위치"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/location"
-            android:textColor="#353535"
+            android:textColor="#333333"
             android:textSize="12pt"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="20dp"
             android:text="[대충 현재위치]"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_margin="20dp"
         android:orientation="vertical"
@@ -107,14 +122,16 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:text="어디로 갈까요"
-                android:textColor="#353535"
-                android:textSize="8pt"></TextView>
+                android:text="어디로 갈까요?"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:textSize="8pt"/>
             <Spinner
                 android:background="@drawable/xml_border"
                 android:paddingLeft="10dp"
@@ -122,109 +139,120 @@
                 android:layout_marginBottom="10dp"
                 android:id="@+id/spin_heya"
                 android:layout_width="150dp"
-                android:layout_height="30dp"></Spinner>
+                android:layout_height="30dp"/>
+
         </LinearLayout>
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:paddingTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <TextView
                     android:layout_width="128dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
                     android:text="돌아올 시간은?"
-                    android:textColor="#353535"
-                    android:textSize="8pt"></TextView>
-                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:textSize="8pt"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:id="@+id/shi"
                     android:layout_marginLeft="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#000000"
+                    android:textColor="#333333"
                     android:textSize="8pt"
-                    android:background="@drawable/xml_border"
-                    android:padding="5dp"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"></TextView>
+                    android:ems="2"/>
                 <TextView
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 시 "
-                    android:textColor="#353535"
-                    android:textSize="8pt"></TextView>
-                <TextView
+                    android:textColor="#333333"
+                    android:textSize="8pt"/>
+                <EditText
                     android:layout_marginTop="10dp"
                     android:id="@+id/bun"
                     android:layout_marginBottom="10dp"
-                    android:textColor="#000000"
+                    android:textColor="#333333"
                     android:textSize="8pt"
-                    android:background="@drawable/xml_border"
-                    android:padding="5dp"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"></TextView>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="2"/>
                 <TextView
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 분"
-                    android:textColor="#353535"
-                    android:textSize="8pt"></TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <Button
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#000000"
-                    android:id="@+id/clock"
-                    android:layout_marginRight="20dp"
-                    android:padding="5dp"
-                    android:textSize="5pt"
-                    android:text="시간설정"
-                    android:background="@drawable/rounded"
-                    android:elevation="5dp"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"></Button>
+                    android:textColor="#333333"
+                    android:textSize="8pt"/>
+
                 <CheckBox
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#23C77B"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@drawable/btn_hazong_textcolor"
                     android:id="@+id/hazong"
-                    android:layout_marginRight="20dp"
                     android:padding="5dp"
-                    android:textSize="5pt"
+                    android:textSize="14sp"
                     android:text="하루종일"
                     android:gravity="center"
                     android:button="@null"
                     android:background="@drawable/mycheck"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"></CheckBox>
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <Button
+                    android:textColor="#333333"
+                    android:id="@+id/clock"
+                    android:layout_marginRight="20dp"
+                    android:textSize="16sp"
+                    android:text="시간설정"
+                    android:background="@drawable/rounded"
+                    android:elevation="25dp"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/go"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:text="적용"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:background="@drawable/green_rounded"
+                    android:textSize="16sp"
+                    android:elevation="25dp"
+                    android:layout_marginBottom="10dp"/>
+
+
+            </LinearLayout>
+
         </LinearLayout>
-        <Button
-            android:layout_gravity="center"
-            android:id="@+id/go"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:text="적용"
-            android:textColor="#333"
-            android:background="@drawable/rounded"
-            android:textSize="18dp"
-            android:textFontWeight="500"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            android:elevation="6dp"/>
+
+
+
     </LinearLayout>
+
 </LinearLayout>

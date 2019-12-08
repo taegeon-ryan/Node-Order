@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.app.AlertDialog;
 
@@ -30,8 +31,8 @@ import java.util.HashMap;
 public class ChooseActivity extends Activity  {
     String temp = "";
     HashMap<String, Object> childUpdates = null;
-    String Text, genzai_namae;
-    Button student, teacher;
+    String Text, present_name;
+    ImageButton student, teacher;
     AlertDialog.Builder alert;
     DatabaseReference returnRef = null;
     DatabaseReference allRef = null;
@@ -54,8 +55,8 @@ public class ChooseActivity extends Activity  {
 
         alert = new AlertDialog.Builder(this);
         childUpdates = new HashMap<>();
-        student = (Button)findViewById(R.id.student);
-        teacher = (Button)findViewById(R.id.teacher);
+        student = (ImageButton)findViewById(R.id.btnStudent);
+        teacher = (ImageButton)findViewById(R.id.btnTeacher);
 
         allRef = FirebaseDatabase.getInstance().getReference();
 
@@ -75,9 +76,6 @@ public class ChooseActivity extends Activity  {
                 show();
             }
         });
-
-
-
 
     }
 
@@ -131,12 +129,14 @@ public class ChooseActivity extends Activity  {
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {}
                             };
-                            genzai_namae = names[i];
-                            returnRef = FirebaseDatabase.getInstance().getReference().child("student").child(genzai_namae);
+                            present_name = names[i];
+                            returnRef = FirebaseDatabase.getInstance().getReference().child("student").child(present_name);
                             returnRef.addValueEventListener(listener);
                         }
                         Thread.sleep(1000);
-                    } catch (InterruptedException e) {}
+                    } catch (InterruptedException e) {
+
+                    }
                 }
             }
         };

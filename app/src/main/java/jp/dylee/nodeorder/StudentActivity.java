@@ -61,7 +61,7 @@ public class StudentActivity extends Activity {
         location = (TextView)findViewById(R.id.location);
         mPostReference = FirebaseDatabase.getInstance().getReference() .child("student").child(name).child("site");
         thistime = (TextView) findViewById(R.id.thistime);
-        jikan_mitai();
+        getTime();
         mDBReference = FirebaseDatabase.getInstance().getReference();
         childUpdates = new HashMap<>();
         shi = (TextView) findViewById(R.id.shi);
@@ -110,7 +110,7 @@ public class StudentActivity extends Activity {
                     childUpdates.put("/student/" + name + "/s_return", "하루종일");
                     mDBReference.updateChildren(childUpdates);
                 }else{
-                    String  text0 = hour + " : " + min;
+                    String text0 = hour + " : " + min;
                     childUpdates.put("/student/" + name + "/s_return", text0);
                     mDBReference.updateChildren(childUpdates);
                 }
@@ -133,7 +133,7 @@ public class StudentActivity extends Activity {
         mPostReference.addValueEventListener(locationListener);
     }
 
-    public void jikan_mitai(){
+    public void getTime(){
         final Handler handler = new Handler() {
             SimpleDateFormat simpleDate = new SimpleDateFormat("h시 m분");
             SimpleDateFormat hour = new SimpleDateFormat("HH");
